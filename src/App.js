@@ -4,7 +4,7 @@ export default function App() {
       <Logo />
       <Form />
  <PackingList />
- 
+ <Stats />
 
     </div>
   );
@@ -27,5 +27,13 @@ function PackingList()
     <div className="list">
       LIST
     </div>
+  )
+}
+function Stats()
+{
+  return(
+    <footer className="stats">
+      You have x item on your list , and you already packed x(x%)
+    </footer>
   )
 }
