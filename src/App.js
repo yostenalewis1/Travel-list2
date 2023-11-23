@@ -33,10 +33,7 @@ function Form({ onAddItem }) {
     const newItem= {description , quantity , packed:false , id:Date.now()
     }
  console.log(newItem)
-
-  /*   initialItems.push(newIem) */
     
-
      setdescription("")
      setquantity(1)
 
