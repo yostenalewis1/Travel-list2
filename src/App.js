@@ -23,7 +23,7 @@ function Logo() {
   return <h1>🌊 FAR AWAY 🍱</h1>;
 }
 
-function Form({ onAddItem }) {
+function Form() {
   const [description, setdescription] = useState("");
  const[quantity,setquantity]=useState(1)
 
