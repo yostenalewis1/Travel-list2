@@ -97,10 +97,12 @@ function Item({ item, onDeleteItem ,onToggelitem}) {
 
 function Stats({items}) {
   const numItems = items.length
-  
+  const itemPacked = items.filter((item)=>item.packed).length ;
+
+
   return (
     <footer className="stats">
-      You have {numItems} item on your list , and you already packed x(x%)
+      You have {numItems} item on your list , and you already packed {itemPacked} (x%)
     </footer>
   );
 }
