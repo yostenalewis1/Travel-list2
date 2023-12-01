@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function App() {
   const [items, setItems] = useState([]);
 
+
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
   }
@@ -24,7 +25,7 @@ export default function App() {
       <Form onAddItems={handleAddItems} />
       <PackingList items={items} onDeleteItem={handleDeleteItem} 
       onToggelitem={handleToggleItem}/>
-      <Stats />
+      <Stats items={items}/>
     </div>
   );
 }
@@ -50,7 +51,7 @@ function Form({ onAddItems }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>what doyou need for your trip</h3>
+      <h3>what do you need for your trip</h3>
       <select value={quantity} onChange={(e) => setquantity(e.target.value)}>
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
           <option value={num} key={num}>
@@ -94,10 +95,17 @@ function Item({ item, onDeleteItem ,onToggelitem}) {
   );
 }
 
-function Stats() {
+function Stats({items}) {
+  const numItems = items.length
+  
   return (
     <footer className="stats">
-      You have x item on your list , and you already packed x(x%)
+      You have {numItems} item on your list , and you already packed x(x%)
     </footer>
   );
 }
+
+
+
+
+
