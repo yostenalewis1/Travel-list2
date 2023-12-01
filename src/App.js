@@ -3,7 +3,6 @@ import { useState } from "react";
 export default function App() {
   const [items, setItems] = useState([]);
 
-
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
   }
@@ -23,9 +22,12 @@ export default function App() {
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} onDeleteItem={handleDeleteItem} 
-      onToggelitem={handleToggleItem}/>
-      <Stats items={items}/>
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggelitem={handleToggleItem}
+      />
+      <Stats items={items} />
     </div>
   );
 }
@@ -51,7 +53,7 @@ function Form({ onAddItems }) {
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>what do you need for your trip</h3>
+      <h3>what do you need for your trip 😍</h3>
       <select value={quantity} onChange={(e) => setquantity(e.target.value)}>
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
           <option value={num} key={num}>
@@ -70,23 +72,31 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onDeleteItem ,onToggelitem }) {
+function PackingList({ items, onDeleteItem, onToggelitem }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} onDeleteItem={onDeleteItem} onToggelitem={onToggelitem}
-          key={item.id} />
+          <Item
+            item={item}
+            onDeleteItem={onDeleteItem}
+            onToggelitem={onToggelitem}
+            key={item.id}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item, onDeleteItem ,onToggelitem}) {
+function Item({ item, onDeleteItem, onToggelitem }) {
   return (
     <li>
-      <input type="checkbox" value={item.packed} onChange={() => onToggelitem(item.id)}></input>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onToggelitem(item.id)}
+      ></input>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
@@ -95,20 +105,25 @@ function Item({ item, onDeleteItem ,onToggelitem}) {
   );
 }
 
-function Stats({items}) {
-  const numItems = items.length
-  const itemPacked = items.filter((item)=>item.packed).length ;
-  const percentage = Math.round((itemPacked / numItems) *100)
+function Stats({ items }) {
+  if (!items.length)
+    return (
+      <p className="stats">
+        <em>Start adding some items to your packing list 🚀</em>
+      </p>
+    );
 
+  const numItems = items.length;
+  const itemPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.round((itemPacked / numItems) * 100);
 
   return (
     <footer className="stats">
-      You have {numItems} item on your list , and you already packed {itemPacked} ({percentage} %)
+      <em>
+        {percentage === 100
+          ? "you got everything , ready to go 🏃‍♀️ "
+          : `You have ${numItems} item on your list , and you already packed ${itemPacked} (${percentage} %)`}
+      </em>
     </footer>
   );
 }
-
-
-
-
-
