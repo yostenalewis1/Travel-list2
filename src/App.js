@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "./logo";
 import Form from "./Form";
-import  PackingList  from "./PackingList";
+import PackingList from "./PackingList";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -38,22 +38,6 @@ export default function App() {
       />
       <Stats items={items} />
     </div>
-  );
-}
-
-export function Item({ item, onDeleteItem, onToggelitem }) {
-  return (
-    <li>
-      <input
-        type="checkbox"
-        value={item.packed}
-        onChange={() => onToggelitem(item.id)}
-      ></input>
-      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-        {item.quantity} {item.description}
-      </span>
-      <button onClick={() => onDeleteItem(item.id)}>❌</button>
-    </li>
   );
 }
 
