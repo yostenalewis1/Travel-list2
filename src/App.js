@@ -20,7 +20,8 @@ export default function App() {
 
   function handelDeleteAllitems()
   {
-    setItems([]);
+    const confirm = window.confirm("Are you sure to delete all the items ?")
+    if (confirm) setItems([]);
   }
 
   return (
