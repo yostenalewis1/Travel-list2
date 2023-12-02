@@ -18,6 +18,11 @@ export default function App() {
     );
   }
 
+  function handelDeleteAllitems()
+  {
+    setItems([]);
+  }
+
   return (
     <div className="app">
       <Logo />
@@ -26,8 +31,9 @@ export default function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggelitem={handleToggleItem}
+        ondeleteAllitems={handelDeleteAllitems}
       />
-      <Stats items={items} />
+      <Stats items={items}  />
     </div>
   );
 }
@@ -72,7 +78,7 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onDeleteItem, onToggelitem }) {
+function PackingList({ items, onDeleteItem, onToggelitem ,ondeleteAllitems }) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -106,6 +112,7 @@ sortedItems = items
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
+        <button onClick={ondeleteAllitems}>Clear All Items</button>
       </div>
     </div>
   );
